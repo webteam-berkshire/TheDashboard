@@ -12,5 +12,6 @@ namespace TheDashboard.Models
         public string LogItemType { get; set; }
         public DateTime? Timestamp { get; set; }
         public DateTime? ScheduledPublishDate { get; set; }
+        public string CreatedByUser { get; set; }
     }
 }
