@@ -89,7 +89,7 @@ namespace TheDashboard.Api
                         NodeName = contentNode.Name,
                         Timestamp = item.UpdateDate != null ? item.UpdateDate.Value : (DateTime?) null
                     };
-
+                System.Diagnostics.Debug.WriteLine("RecycleBin: " + activityViewModel.ToString());
                 dashboardViewModel.UnpublishedContent.Add(activityViewModel);
             }
 
@@ -103,6 +103,7 @@ namespace TheDashboard.Api
                     CreatedByUser = GetUser(item.CreatorId).Name,
                     Timestamp = item.UpdateDate != null ? item.UpdateDate : (DateTime?) null
                 };
+
                 dashboardViewModel.ItemsInRecycleBin.Add(activityViewModel);
             }
 
