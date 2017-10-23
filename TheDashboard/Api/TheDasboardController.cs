@@ -31,7 +31,7 @@ namespace TheDashboard.Api
             var unpublishedContent = umbracoRepository.GetUnpublishedContent().ToArray();
             var logItems = umbracoRepository.GetLatestLogItems().ToArray();
             var nodesInRecyleBin = umbracoRepository.GetRecycleBinNodes().Select(x => x.Id).ToArray();
-            var RecycleBinContents = umbracoRepository.GetRecycleBinNodes().ToArray();
+            var RecycleBinContents = umbracoRepository.GetRecycleBinNodes();
 
 
             //LOG LOOP
@@ -93,6 +93,19 @@ namespace TheDashboard.Api
                 dashboardViewModel.UnpublishedContent.Add(activityViewModel);
             }
 
+            //RECYCLE BIN LOOP
+            foreach (var item in RecycleBinContents)
+            {
+                var activityViewModel = new ActivityViewModel
+                {
+                    NodeName = item.Name,
+                    NodeId = item.Id,
+                    CreatedByUser = GetUser(item.CreatorId).Name,
+                    Timestamp = item.UpdateDate != null ? item.UpdateDate : (DateTime?) null
+                };
+                dashboardViewModel.ItemsInRecycleBin.Add(activityViewModel);
+            }
+
             //USER LOG ACTIVITY
             foreach (var item in logItems.Where(x => x.UserId == Security.CurrentUser.Id).Take(10))
             {
@@ -116,7 +129,7 @@ namespace TheDashboard.Api
             dashboardViewModel.CountTotalWebsiteMembers = umbracoRepository.CountMembers();
             dashboardViewModel.CountNewMembersLastWeek = umbracoRepository.CountNewMember();
             dashboardViewModel.CountContentInRecycleBin = nodesInRecyleBin.Count();
-            dashboardViewModel.ItemsInRecycleBin = nodesInRecyleBinList;
+            //dashboardViewModel.ItemsInRecycleBin = RecycleBinContents;
 
             return dashboardViewModel;
         }
