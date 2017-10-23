@@ -112,6 +112,8 @@ namespace TheDashboard.Api
             dashboardViewModel.CountNewMembersLastWeek = umbracoRepository.CountNewMember();
             dashboardViewModel.CountContentInRecycleBin = nodesInRecyleBin.Count();
 
+            dashboardViewModel.GetItemsInRecycleBin = nodesInRecycleBin;
+
             return dashboardViewModel;
         }
 
