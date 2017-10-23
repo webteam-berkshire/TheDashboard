@@ -19,5 +19,7 @@ namespace TheDashboard.Models
         public int CountContentInRecycleBin { get; set; }
         public int CountTotalWebsiteMembers { get; set; }
         public int CountNewMembersLastWeek { get; set; }
+
+        public List<ActivityViewModel> GetItemsInRecycleBin { get; set; }
     }
 }
