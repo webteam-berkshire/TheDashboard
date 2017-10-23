@@ -1,5 +1,5 @@
 ﻿using System.Xml;
-using TheDashboard.Install.PackageActions.Helpers;
+//using TheDashboard.Install.PackageActions.Helpers;
 using umbraco.BusinessLogic;
 using Umbraco.Core;
 using Umbraco.Core.Configuration;
@@ -29,7 +29,7 @@ namespace TheDashboard.Install.PackageActions
             this.AddSectionDashboard("TheDevDashboard", "developer", "Developer dashboard", "/app_plugins/TheDashboard/TheDevDashboard.html");
 
            // Language (only runs in Umbraco 7.3 and below)
-            TranslationHelper.AddTranslations();
+            //TranslationHelper.AddTranslations();
 
             return true;
         }
@@ -41,7 +41,7 @@ namespace TheDashboard.Install.PackageActions
             this.RemoveDashboardTab("TheDevDashboard");
 
             // Language (only runs in Umbraco 7.3 and below)
-            TranslationHelper.RemoveTranslations();
+            //TranslationHelper.RemoveTranslations();
 
             return true;
         }
