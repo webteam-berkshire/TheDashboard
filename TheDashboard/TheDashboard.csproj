@@ -243,7 +243,6 @@
     <Compile Include="Data\DTO\ReflectedClassDto.cs" />
     <Compile Include="Data\DTO\ControllerDetailDto.cs" />
     <Compile Include="Data\UmbracoRepository.cs" />
-    <Compile Include="Install\PackageActions\Helpers\TranslationHelper.cs" />
     <Compile Include="Install\PackageActions\RemoveOldInstallation.cs" />
     <Compile Include="Install\PackageActions\TheDashboardPackageAction.cs" />
     <Compile Include="Models\DevDashboard\BaseClassViewModel.cs" />
@@ -260,6 +259,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Install\PackageActions\Helpers\" />
     <Folder Include="Web\UI\App_Plugins\TheDashboard\Avatars\" />
   </ItemGroup>
   <PropertyGroup>
