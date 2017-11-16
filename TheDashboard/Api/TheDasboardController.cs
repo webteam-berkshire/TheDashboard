@@ -34,7 +34,7 @@ namespace TheDashboard.Api
             var RecycleBinContents = umbracoRepository.GetRecycleBinNodes();
 
 
-            //LOG LOOP
+            //ACTIVITIES LOG LOOP
             foreach (var logItem in logItems.Take(10))
             {
                 var user = GetUser(logItem.UserId);
@@ -46,6 +46,8 @@ namespace TheDashboard.Api
                 var activityViewModel = new ActivityViewModel
                     {
                         UserDisplayName = user.Name,
+                        CreatedByUser = GetUser(contentNode.CreatorId).Name,
+                        LastEditBy = GetUser(contentNode.WriterId).Name,
                         UserAvatarUrl = UserAvatarProvider.GetAvatarUrl(user),
                         NodeId = logItem.NodeId,
                         NodeName = contentNode.Name,
@@ -84,12 +86,13 @@ namespace TheDashboard.Api
                 var activityViewModel = new ActivityViewModel
                     {
                         UserDisplayName = user.Name,
+                        CreatedByUser = GetUser(contentNode.CreatorId).Name,
+                        LastEditBy = GetUser(contentNode.WriterId).Name,
                         UserAvatarUrl = UserAvatarProvider.GetAvatarUrl(user),
                         NodeId = item.NodeId,
                         NodeName = contentNode.Name,
                         Timestamp = item.UpdateDate != null ? item.UpdateDate.Value : (DateTime?) null
                     };
-                System.Diagnostics.Debug.WriteLine("RecycleBin: " + activityViewModel.ToString());
                 dashboardViewModel.UnpublishedContent.Add(activityViewModel);
             }
 
@@ -101,6 +104,7 @@ namespace TheDashboard.Api
                     NodeName = item.Name,
                     NodeId = item.Id,
                     CreatedByUser = GetUser(item.CreatorId).Name,
+                    LastEditBy = GetUser(item.WriterId).Name,
                     Timestamp = item.UpdateDate != null ? item.UpdateDate : (DateTime?) null
                 };
 
